@@ -1,3 +1,0 @@
-C:/Coding/AoC/Day3/cmake-build-release/CMakeFiles/Day3.dir
-C:/Coding/AoC/Day3/cmake-build-release/CMakeFiles/edit_cache.dir
-C:/Coding/AoC/Day3/cmake-build-release/CMakeFiles/rebuild_cache.dir
