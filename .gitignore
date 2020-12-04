@@ -1,0 +1,12 @@
+./Day1/.idea
+./Day2/.idea
+./Day3/.idea
+./Day4/.idea
+
+./Day1/cmake-build-*
+./Day2/cmake-build-*
+./Day3/cmake-build-*
+
+./Day1/CMakeLists.txt
+./Day2/CMakeLists.txt
+./Day3/CMakeLists.txt
