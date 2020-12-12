@@ -8,7 +8,7 @@ void taskOne() {
     vm.loadFromFile("input.txt");
     try {
         std::cout << vm.execute() << std::endl;
-    } catch (std::string &acc) {
+    } catch (int acc) {
         std::cout << acc << std::endl;
     }
 }

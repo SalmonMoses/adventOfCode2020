@@ -16,6 +16,7 @@ enum class CommandType {
 struct Command {
     CommandType cmdType;
     int arg;
+    bool wasExecuted;
 };
 
 class VM {

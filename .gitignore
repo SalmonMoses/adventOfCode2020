@@ -6,6 +6,10 @@
 /Day6/.idea/*
 /Day7/.idea/*
 /Day8/.idea/*
+/Day9/.idea/*
+/Day10/.idea/*
+/Day11/.idea/*
+/Day12/.idea/*
 
 /Day1/cmake-build-debug/**
 /Day2/cmake-build-debug/**
@@ -13,9 +17,17 @@
 /Day3/cmake-build-release/**
 /Day5/cmake-build-debug/**
 /Day8/cmake-build-debug/**
+/Day9/cmake-build-debug/**
+/Day10/cmake-build-debug/**
+/Day11/cmake-build-debug/**
+/Day12/cmake-build-debug/**
 
 /Day1/CMakeLists.txt
 /Day2/CMakeLists.txt
 /Day3/CMakeLists.txt
 /Day5/CMakeLists.txt
 /Day8/CMakeLists.txt
+/Day9/CMakeLists.txt
+/Day10/CMakeLists.txt
+/Day11/CMakeLists.txt
+/Day12/CMakeLists.txt

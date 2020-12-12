@@ -18,13 +18,12 @@ void VM::loadFromFile(const std::string &filePath) {
         std::string command = cmd.substr(0, separatorPos);
         std::string argument = cmd.substr(separatorPos);
         int arg = std::stoi(argument);
-        std::cout << command << ' ' << arg << std::endl;
         CommandType type;
         if (command == "acc") {
             type = CommandType::ACC;
         } else if (command == "jmp") {
             type = CommandType::JMP;
-        } else if (command == "nop") {
+        } else {
             type = CommandType::NOP;
         }
         this->originalProgram.push_back(Command{type, arg});
@@ -33,18 +32,17 @@ void VM::loadFromFile(const std::string &filePath) {
 }
 
 int VM::execute() {
-    std::set<unsigned int> executedCommands;
     while (ip < program.size()) {
-        if (executedCommands.find(ip) != executedCommands.end()) {
-            throw std::string("On entering infinite loop accumulator was " + acc);
+        Command &curCommand = program[ip];
+        if (curCommand.wasExecuted) {
+            throw acc;
         }
-        Command curCommand = program[ip];
-        executedCommands.insert(ip);
+        curCommand.wasExecuted = true;
         switch (curCommand.cmdType) {
-            case CommandType::ACC: this->acc += curCommand.arg;
+            case CommandType::ACC: acc += curCommand.arg;
                 ip++;
                 break;
-            case CommandType::JMP: this->ip += curCommand.arg;
+            case CommandType::JMP: ip += curCommand.arg;
                 break;
             case CommandType::NOP: ip++;
         }
@@ -53,19 +51,19 @@ int VM::execute() {
 }
 
 int VM::repairMutationally() {
-    for(int i = 0; i < originalProgram.size(); ++i) {
+    for (int i = 0; i < originalProgram.size(); ++i) {
         Command cmdToMutate = originalProgram[i];
-        if(cmdToMutate.cmdType == CommandType::JMP) {
+        if (cmdToMutate.cmdType == CommandType::JMP) {
             cmdToMutate.cmdType = CommandType::NOP;
             program[i] = cmdToMutate;
-        } else if(cmdToMutate.cmdType == CommandType::NOP) {
+        } else if (cmdToMutate.cmdType == CommandType::NOP) {
             cmdToMutate.cmdType = CommandType::JMP;
             program[i] = cmdToMutate;
         }
         try {
-            return this->execute();
-        } catch (int e) {
-            this->resetState();
+            return execute();
+        } catch (int) {
+            resetState();
             continue;
         }
     }
